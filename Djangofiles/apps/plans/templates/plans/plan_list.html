@@ -1,0 +1,25 @@
+<h2>Plans</h2>
+
+<a href="{% url 'plan_add' %}">➕ Add Plan</a>
+
+<ul>
+  {% for plan in plans %}
+    <li>
+      <strong>{{ plan.title }}</strong>
+      — {{ plan.currency }} {{ plan.price }}
+
+      {% if plan.sale_price %}
+        <span>(Sale: {{ plan.currency }} {{ plan.sale_price }})</span>
+      {% endif %}
+
+      — <em>{{ plan.status }}</em>
+
+      <br>
+
+      <a href="{% url 'plan_edit' plan.id %}">Edit</a> |
+      <a href="{% url 'plan_delete' plan.id %}">Delete</a>
+    </li>
+  {% empty %}
+    <li>No plans found.</li>
+  {% endfor %}
+</ul>
