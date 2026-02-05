@@ -1,0 +1,64 @@
+<h2>{% if form.instance.pk %}Edit Plan{% else %}Add Plan{% endif %}</h2>
+
+<form method="post">
+  {% csrf_token %}
+
+  <fieldset>
+    <legend>Basic Info</legend>
+    {{ form.title.label_tag }} {{ form.title }}<br>
+    {{ form.sub_title.label_tag }} {{ form.sub_title }}<br>
+    {{ form.tag.label_tag }} {{ form.tag }}<br>
+  </fieldset>
+
+  <fieldset>
+    <legend>Plan Type</legend>
+    {{ form.plan_type_id.label_tag }} {{ form.plan_type_id }}<br>
+    {{ form.plan_type.label_tag }} {{ form.plan_type }}<br>
+  </fieldset>
+
+  <fieldset>
+    <legend>Pricing</legend>
+    {{ form.price.label_tag }} {{ form.price }}<br>
+    {{ form.sale_price.label_tag }} {{ form.sale_price }}<br>
+    {{ form.currency.label_tag }} {{ form.currency }}<br>
+  </fieldset>
+
+  <fieldset>
+    <legend>Duration & SIM</legend>
+    {{ form.duration_type.label_tag }} {{ form.duration_type }}<br>
+    {{ form.duration_value.label_tag }} {{ form.duration_value }}<br>
+    {{ form.call_duration.label_tag }} {{ form.call_duration }}<br>
+    {{ form.sim_type.label_tag }} {{ form.sim_type }}<br>
+  </fieldset>
+
+  <fieldset>
+    <legend>Media</legend>
+   {% if form.instance.featured_image %}
+        <img src="{{ form.instance.featured_image.url }}" width="150">
+    {% endif %}
+  </fieldset>
+
+  <fieldset>
+    <legend>Features (JSON)</legend>
+    {{ form.features }}
+  </fieldset>
+
+  <fieldset>
+    <legend>SEO</legend>
+    {{ form.meta_title.label_tag }} {{ form.meta_title }}<br>
+    {{ form.meta_slug.label_tag }} {{ form.meta_slug }}<br>
+    {{ form.meta_description.label_tag }} {{ form.meta_description }}<br>
+  </fieldset>
+
+  <fieldset>
+    <legend>Status</legend>
+    {{ form.status.label_tag }} {{ form.status }}<br>
+    {{ form.order.label_tag }} {{ form.order }}<br>
+  </fieldset>
+
+  <br>
+  <button type="submit">💾 Save</button>
+</form>
+
+<br>
+<a href="{% url 'plan_list' %}">⬅ Back to Plans</a>
