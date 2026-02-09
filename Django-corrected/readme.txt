@@ -1,1 +1,1 @@
-these files have correctlt installed Django files
+django golite based backend devlopement files for Golite mobiles 
