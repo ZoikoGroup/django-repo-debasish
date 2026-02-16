@@ -20,6 +20,7 @@ urlpatterns = [
     path('api/plans/', include('apps.plans.api_urls')),
     path('api/accounts/', include('apps.accounts.urls')),
 path('jobs/', include('apps.jobs.urls')),
+  path('api/', include('apps.careers.urls')),
     
 
     
@@ -27,4 +28,4 @@ path('jobs/', include('apps.jobs.urls')),
 ]
 
 if settings.DEBUG:
-    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)     
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

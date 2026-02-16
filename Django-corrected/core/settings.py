@@ -2,8 +2,15 @@
 Django settings for core project.
 """
 
+
+
 from pathlib import Path
 import os
+
+BASE_DIR = Path(__file__).resolve().parent.parent
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'media'
 
 # --------------------------------------------------
 # BASE DIR
@@ -35,6 +42,7 @@ ALLOWED_HOSTS = [
 INSTALLED_APPS = [
     # Django core
      "jazzmin",
+    'apps.careers',
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -153,10 +161,15 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 # DJANGO REST FRAMEWORK
 # --------------------------------------------------
 REST_FRAMEWORK = {
-    'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.AllowAny',
+    "DEFAULT_AUTHENTICATION_CLASSES": [
+        "rest_framework.authentication.TokenAuthentication",
+    ],
+    "DEFAULT_FILTER_BACKENDS": [
+        "django_filters.rest_framework.DjangoFilterBackend",
+        "rest_framework.filters.SearchFilter",
     ],
 }
+
 
 # --------------------------------------------------
 # CKEDITOR 5

@@ -3,44 +3,34 @@ from django.contrib.auth.models import User
 
 class Job(models.Model):
 
-    STATUS_CHOICES = (
-        (True, 'Active'),
-        (False, 'Inactive'),
-    )
+    DEPARTMENT_CHOICES = [
+        ('sales_marketing', 'Sales & Marketing'),
+        ('customer_support', 'Customer Support'),
+        ('tech_dev', 'Technology & Development'),
+        ('operations_mgmt', 'Operations & Management'),
+        ('business_dev', 'Business Development'),
+        ('field_sales', 'Field Sales'),
+    ]
 
     title = models.CharField(max_length=200)
-    subtitle = models.CharField(max_length=255, blank=True)
-
-    positions = models.PositiveIntegerField(
-        help_text="Number of open positions"
-    )
-
-    experience = models.CharField(
-        max_length=100,
-        help_text="e.g. 0-2 years, 3+ years"
-    )
-
+    short_description = models.CharField(max_length=300)
+    description = models.TextField()
     location = models.CharField(max_length=100)
 
-    status = models.BooleanField(
-        default=True,
-        choices=STATUS_CHOICES
+    department = models.CharField(   # 🔥 ADD THIS
+        max_length=50,
+        choices=DEPARTMENT_CHOICES,
+        default='tech_dev'
     )
 
-    description = models.TextField()
-
-    salary = models.CharField(
-        max_length=100,
-        blank=True
-    )
-
-    posted_by = models.ForeignKey(
-        User,
-        on_delete=models.CASCADE,
-        related_name="jobs"
-    )
-
+    technologies = models.CharField(max_length=300, help_text="Comma separated values")
+    experience = models.CharField(max_length=100)
+    positions = models.PositiveIntegerField(default=1)
+    salary = models.CharField(max_length=100, blank=True)
+    status = models.BooleanField(default=True)
+    posted_by = models.ForeignKey(User, on_delete=models.CASCADE)
     posted_at = models.DateTimeField(auto_now_add=True)
 
+
     def __str__(self):
-        return f"{self.title} - {self.location}"
+        return self.title
