@@ -19,11 +19,8 @@ urlpatterns = [
     path('api/products/', include('apps.products.api_urls', namespace='products_api')),
     path('api/plans/', include('apps.plans.api_urls')),
     path('api/accounts/', include('apps.accounts.urls')),
-path('jobs/', include('apps.jobs.urls')),
-  path('api/', include('apps.careers.urls')),
-    
-
-    
+    path('jobs/', include('apps.jobs.urls')),
+  path("api/", include("apps.careers.urls")),
     path('api/v1/', include('apps.coupons.urls')),
 ]
 
